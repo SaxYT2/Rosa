@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carta Animada</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f8e8e8;
+        }
+        .container {
+            position: relative;
+            width: 300px;
+            height: 200px;
+            cursor: pointer;
+        }
+        .envelope {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-color: #d9534f;
+            border-radius: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+            overflow: hidden;
+            z-index: 1;
+        }
+        .flap {
+            position: absolute;
+            top: 0;
+            width: 100%;
+            height: 50%;
+            background-color: #c0392b;
+            clip-path: polygon(0% 0%, 100% 0%, 50% 100%);
+            transition: transform 0.5s ease-in-out;
+            transform-origin: top;
+            z-index: 3;
+        }
+        .container.open .flap {
+            transform: rotateX(180deg);
+        }
+        .message {
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%) translateY(100%);
+            width: 80%;
+            height: auto;
+            background-color: white;
+            border-radius: 5px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            padding: 20px;
+            font-size: 18px;
+            opacity: 0;
+            transition: transform 0.5s ease-in-out, opacity 0.5s;
+            z-index: 2;
+        }
+        .container.open .message {
+            opacity: 1;
+            transform: translateX(-50%) translateY(-35%);
+        }
+        .bottom-flaps {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            height: 50%;
+            background-color: #e57373;
+            clip-path: polygon(0% 100%, 50% 0%, 100% 100%);
+            z-index: 2;
+        }
+    </style>
+</head>
+<body>
+    <div class="container" onclick="toggleLetter()">
+        <div class="envelope">
+            <div class="flap"></div>
+            <div class="bottom-flaps"></div>
+        </div>
+        <div class="message">Holi 💖
+
+            Te hago esta carta para recordarte lo increíble que eres. Eres una persona muy especial para mí, alguien que ilumina mis días con su presencia y su forma de ser. No importa el momento ni la situación, siempre valoro tenerte a mi lado.
+            
+            Quiero que nunca olvides lo mucho que te aprecio y lo afortunado(a) que me siento de llamarte mi pulga. Eres esa personita con la que puedo ser yo mismo sin miedo, la que me entiende sin necesidad de decir mucho, y con quien los momentos simples se vuelven inolvidables.
+            
+            Yo te amo mucho y siempre estaré aquí para ti. 💕</div>
+    </div>
+    <audio id="music" src="Iridescent.mp3" autoplay loop></audio>
+
+    <script>
+        function toggleLetter() {
+            document.querySelector('.container').classList.toggle('open');
+        }
+        document.addEventListener("click", function () {
+    let audio = document.getElementById("music");
+    audio.play();
+}, { once: true }); // Se ejecuta solo una vez
+    </script>
+</body>
+</html>
+
